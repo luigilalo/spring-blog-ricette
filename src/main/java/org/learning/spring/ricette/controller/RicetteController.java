@@ -30,12 +30,17 @@ public class RicetteController {
     private String show(@PathVariable("id") Integer id, Model model) {
         Optional<Ricette> ricetteOptional = ricetteRepository.findById(id);
         if (ricetteOptional.isPresent()) {
-            model.addAttribute("recipe", ricetteOptional.get());
+            model.addAttribute("ricette", ricetteOptional.get());
             return "recipes/details";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
+    @GetMapping("/create")
+    private String create(Model model) {
+        model.addAttribute("ricette", new Ricette());
+        return "recipes/form";
+    }
 
 }
