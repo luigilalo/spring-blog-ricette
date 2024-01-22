@@ -24,9 +24,16 @@ public class Ricette {
     private Integer portions;
     @Lob
     private String description;
-    @ManyToMany
-    private ArrayList<Categoria> categorie;
+    @OneToMany
+    private Categoria categorie;
 
+    public Categoria getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categoria categorie) {
+        this.categorie = categorie;
+    }
 
     public Integer getId() {
         return id;
@@ -82,13 +89,5 @@ public class Ricette {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public ArrayList<Categoria> getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(ArrayList<Categoria> categorie) {
-        this.categorie = categorie;
     }
 }

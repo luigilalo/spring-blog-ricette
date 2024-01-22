@@ -18,7 +18,7 @@ public class Categoria {
     @NotEmpty(message = "Il nome non può essere vuoto")
     private String name;
 
-    @ManyToMany(mappedBy = "categorie")
+    @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ArrayList<Ricette> ricetteArrayList;
 
