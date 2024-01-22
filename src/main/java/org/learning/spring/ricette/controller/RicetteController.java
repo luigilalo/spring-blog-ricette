@@ -61,26 +61,27 @@ public class RicetteController {
     private String edit(@PathVariable("id") Integer id, Model model) {
         Optional<Ricette> ricetteOptional = ricetteRepository.findById(id);
         if (ricetteOptional.isPresent()) {
-            model.addAttribute("recipe", ricetteOptional.get());
-            return "recipes/form";
+            model.addAttribute("ricetta", ricetteOptional.get());
+            return "edit";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/edit/{id}")
-    public String update(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Ricette formRicette ,
+    public String update(@PathVariable Integer id, @Valid @ModelAttribute("ricetta") Ricette formRicette ,
                          BindingResult bindingResult) {
         Optional<Ricette> result = ricetteRepository.findById(id);
         if (result.isPresent()) {
             Ricette editedRicette = result.get();
             if (bindingResult.hasErrors()) {
-                return "/edit";
+                return "list/edit";
             }
+            formRicette.setImage(editedRicette.getImage());
             Ricette savedRicetta = ricetteRepository.save(formRicette);
-            return "redirect:/" + id;
+            return "redirect:/list/show/" + id;
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Recipe with" + id + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La ricetta con ID" + id + "non è stata trovata");
         }
     }
 
