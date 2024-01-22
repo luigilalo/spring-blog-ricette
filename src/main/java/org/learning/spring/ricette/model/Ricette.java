@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @Entity
 @Table (name = "ricette")
@@ -23,6 +24,9 @@ public class Ricette {
     private Integer portions;
     @Lob
     private String description;
+    @ManyToMany
+    private ArrayList<Categoria> categorie;
+
 
     public Integer getId() {
         return id;
@@ -78,5 +82,13 @@ public class Ricette {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Categoria> getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(ArrayList<Categoria> categorie) {
+        this.categorie = categorie;
     }
 }
