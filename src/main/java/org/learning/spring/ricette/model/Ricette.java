@@ -20,7 +20,6 @@ public class Ricette {
     private String image;
     @Column
     private Integer time;
-    @Min(1)
     private Integer portions;
     @Lob
     private String description;
@@ -57,7 +56,7 @@ public class Ricette {
         this.image = image;
     }
 
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 
@@ -69,7 +68,7 @@ public class Ricette {
         return portions;
     }
 
-    public void setPortions(int portions) {
+    public void setPortions(Integer portions) {
         this.portions = portions;
     }
 

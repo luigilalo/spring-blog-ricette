@@ -32,24 +32,30 @@ public class RicetteController {
     private String show(@PathVariable("id") Integer id, Model model) {
         Optional<Ricette> ricetteOptional = ricetteRepository.findById(id);
         if (ricetteOptional.isPresent()) {
-            model.addAttribute("ricette", ricetteOptional.get());
-            return "recipes/details";
+            model.addAttribute("recipe", ricetteOptional.get());
+            return "show";
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/create")
-    private String create(Model model) {
-        model.addAttribute("ricette", new Ricette());
-        return "recipes/form";
+    public String create(Model model) {
+        Ricette ricetta = new Ricette();
+        model.addAttribute("ricetta", ricetta);
+        return "create";
     }
 
     @PostMapping("/create")
-    private String doCreate(@ModelAttribute("ricette") Ricette ricette) {
-        ricetteRepository.save(ricette);
-        return "redirect:/list";
+    public String store(@Valid @ModelAttribute("ricetta") Ricette formRicetta, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "list/create";
+        } else {
+            Ricette savedRecipe = ricetteRepository.save(formRicetta);
+            return "redirect:/list/show/" + savedRecipe.getId();
+        }
     }
+
 
     @GetMapping("/edit/{id}")
     private String edit(@PathVariable("id") Integer id, Model model) {

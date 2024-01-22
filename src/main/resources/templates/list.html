@@ -21,8 +21,6 @@
         <img alt="recipe-img" class="card-img-top" th:src="${recipe.image}">
         <div class="card-body">
             <h5 class="card-title" th:text="${recipe.title}"></h5>
-            <p class="card-text" style="text-overflow: ellipsis; white-space: nowrap;overflow: hidden;"
-               th:text="${recipe.description}"></p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" th:text="|Ingredienti: ${recipe.ingredients}|"></li>
@@ -37,7 +35,7 @@
                     method="post"
                     onsubmit="return confirm('Sicuro di voler cancellare questa ricetta?')"
             >
-                <button type="submit" class="btn btn-primary">Cancella </button>
+                <button type="submit" class="btn btn-danger mt-2">Cancella</button>
             </form>
         </div>
     </div>
