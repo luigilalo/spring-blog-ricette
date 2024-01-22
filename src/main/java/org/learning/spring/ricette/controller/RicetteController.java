@@ -2,6 +2,7 @@ package org.learning.spring.ricette.controller;
 
 import jakarta.validation.Valid;
 import org.learning.spring.ricette.model.Ricette;
+import org.learning.spring.ricette.repository.CategoriaRepository;
 import org.learning.spring.ricette.repository.RicetteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ import java.util.Optional;
 public class RicetteController {
     @Autowired
     RicetteRepository ricetteRepository;
+    @Autowired
+    CategoriaRepository categoriaRepository;
 
     @GetMapping()
     private String index(Model model) {
@@ -43,6 +46,7 @@ public class RicetteController {
     public String create(Model model) {
         Ricette ricetta = new Ricette();
         model.addAttribute("ricetta", ricetta);
+        model.addAttribute("categorie", categoriaRepository.findAll());
         return "create";
     }
 
@@ -61,6 +65,7 @@ public class RicetteController {
     private String edit(@PathVariable("id") Integer id, Model model) {
         Optional<Ricette> ricetteOptional = ricetteRepository.findById(id);
         if (ricetteOptional.isPresent()) {
+            model.addAttribute("categorie", categoriaRepository.findAll());
             model.addAttribute("ricetta", ricetteOptional.get());
             return "edit";
         } else {

@@ -18,9 +18,16 @@ public class Categoria {
     @NotEmpty(message = "Il nome non può essere vuoto")
     private String name;
 
-    @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private ArrayList<Ricette> ricetteArrayList;
+    @OneToMany (mappedBy = "categorie" , orphanRemoval = true , cascade = CascadeType.ALL)
+    private List<Ricette> ricetteList;
+
+    public List<Ricette> getRicetteList() {
+        return ricetteList;
+    }
+
+    public void setRicetteList(List<Ricette> ricetteList) {
+        this.ricetteList = ricetteList;
+    }
 
     public Integer getId() {
         return id;
@@ -38,13 +45,6 @@ public class Categoria {
         this.name = name;
     }
 
-    public ArrayList<Ricette> getRicetteArrayList() {
-        return ricetteArrayList;
-    }
-
-    public void setRicetteArrayList(ArrayList<Ricette> ricetteArrayList) {
-        this.ricetteArrayList = ricetteArrayList;
-    }
 }
 
 

@@ -24,7 +24,7 @@ public class Ricette {
     private Integer portions;
     @Lob
     private String description;
-    @OneToMany
+    @ManyToOne  (cascade = CascadeType.ALL)
     private Categoria categorie;
 
     public Categoria getCategorie() {

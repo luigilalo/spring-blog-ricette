@@ -17,6 +17,10 @@
     <h1 th:text="${recipe.title}"></h1>
     <img class="w-25 mw-50" th:src="${recipe.image}">
     <h2 th:text="${recipe.description}"></h2>
+    <p>Categoria:
+        <span th:if="${recipe.categorie != null}" th:text="${recipe.categorie.name}"></span>
+        <span th:unless="${recipe.categorie != null}">Non Disponibile</span>
+    </p>
     <div class="mt-3">
         <a th:href="@{/list}" class="btn btn-primary">Torna alla Home</a>
     </div>

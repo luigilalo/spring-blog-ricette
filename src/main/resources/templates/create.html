@@ -60,6 +60,14 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="col-4">
+                        <label class="form-label" for="categorie">Categoria</label>
+                        <select id="categorie" class="form-select" th:field="*{categorie}">
+                            <option value="" selected>Seleziona una categoria</option>
+                            <option th:each="categoria : ${categorie}" th:value="${categoria.id}"
+                                    th:text="${categoria.name}"></option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">Salva</button>
