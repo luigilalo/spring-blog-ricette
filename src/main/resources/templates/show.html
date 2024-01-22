@@ -16,6 +16,7 @@
 <div class="container">
     <h1 th:text="${recipe.title}"></h1>
     <img class="w-25 mw-50" th:src="${recipe.image}">
+    <h4>Ricetta Intera:</h4>
     <h2 th:text="${recipe.description}"></h2>
     <p>Categoria:
         <span th:if="${recipe.categorie != null}" th:text="${recipe.categorie.name}"></span>

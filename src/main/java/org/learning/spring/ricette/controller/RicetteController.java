@@ -24,10 +24,16 @@ public class RicetteController {
     @Autowired
     CategoriaRepository categoriaRepository;
 
-    @GetMapping()
-    private String index(Model model) {
-        List<Ricette> ricetteList = ricetteRepository.findAll();
+    @GetMapping
+    public String index(@RequestParam(name = "keyword", required = false) String searchKeyword, Model model) {
+        List<Ricette> ricetteList;
+        if (searchKeyword != null) {
+            ricetteList = ricetteRepository.findByTitleContaining(searchKeyword);
+        } else {
+            ricetteList = ricetteRepository.findAll();
+        }
         model.addAttribute("ricette", ricetteList);
+        model.addAttribute("preloadSearch", searchKeyword);
         return "list";
     }
 
