@@ -14,13 +14,14 @@ public class Ricette {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotEmpty (message = "Il nome non può essere vuoto")
-    @Column(nullable = false)
+    @Column
     private String title;
     private String ingredients;
     private String image;
-    private BigDecimal timePreparation;
+    @Column
+    private Integer time;
     @Min(1)
-    private int portions;
+    private Integer portions;
     @Lob
     private String description;
 
@@ -56,15 +57,15 @@ public class Ricette {
         this.image = image;
     }
 
-    public BigDecimal getTimePreparation() {
-        return timePreparation;
+    public int getTime() {
+        return time;
     }
 
-    public void setTimePreparation(BigDecimal timePreparation) {
-        this.timePreparation = timePreparation;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
-    public int getPortions() {
+    public Integer getPortions() {
         return portions;
     }
 
