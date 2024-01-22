@@ -87,7 +87,7 @@ public class RicetteController {
             redirectAttributes.addFlashAttribute("redirectMessage", result.get().getTitle() + " è stato cancellato!");
             return "redirect:/list";
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Recipe with id" + id + "not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "La ricetta con ID" + id + "non è stata trovata");
         }
     }
 }

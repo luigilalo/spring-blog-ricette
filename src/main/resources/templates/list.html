@@ -32,7 +32,13 @@
         <div class="card-footer text-center m-auto">
             <a class="btn btn-danger" th:href="@{/list/show/{id}(id = ${recipe.id})}">Dettagli</a>
             <a class="btn btn-danger" th:href="@{/list/edit/{id}(id = ${recipe.id})}">Modifica</a>
-            <a class="btn btn-danger" th:href="@{/list/delete/{id}(id = ${recipe.id})}">Cancella</a>
+            <form
+                    th:action="@{/list/delete/{id}(id=${recipe.id})}"
+                    method="post"
+                    onsubmit="return confirm('Sicuro di voler cancellare questa ricetta?')"
+            >
+                <button type="submit" class="btn btn-primary">Cancella </button>
+            </form>
         </div>
     </div>
 
